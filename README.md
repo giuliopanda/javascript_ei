@@ -30,9 +30,30 @@ el(string, options)
 ```
 
 - **string**: Può essere un selettore CSS (ad esempio `#myElement`) o una stringa HTML (ad esempio `<div>Ciao</div>`).
-- **options**: Un oggetto opzionale che specifica le operazioni da eseguire sull'elemento, come l'aggiunta di stili, classi, eventi, ecc.
+- **options**: Un oggetto che specifica le operazioni da eseguire sull'elemento, come l'aggiunta di stili, classi, eventi, ecc.
+
+
+### Riassunto delle opzioni
+
+| Opzione         | Tipo                     | Descrizione                                                                 |
+|-----------------|--------------------------|-----------------------------------------------------------------------------|
+| `to`            | `string` o `HTMLElement` | Aggiunge l'elemento come figlio di un altro elemento.                       |
+| `before`        | `string` o `HTMLElement` | Inserisce l'elemento prima di un altro elemento.                            |
+| `after`         | `string` o `HTMLElement` | Inserisce l'elemento dopo un altro elemento.                                |
+| `replace`       | `string` o `HTMLElement` | Sostituisce il contenuto di un elemento con l'elemento corrente.            |
+| `replaceChild`  | `string` o `HTMLElement` | Sostituisce completamente un elemento con l'elemento corrente.              |
+| `remove`        | `boolean`                | Rimuove l'elemento dal DOM.                                                 |
+| Eventi          | `function`               | Aggiunge gestori di eventi come `click`, `mouseover`, ecc.                  |
+| `style`         | `object`                 | Applica stili CSS all'elemento.                                             |
+| `class`         | `string` o `array`       | Aggiunge una o più classi all'elemento.                                     |
+| `removeClass`   | `string`                 | Rimuove una classe specifica dall'elemento.                                 |
+| `replaceClass`  | `array`                  | Sostituisce una classe con un'altra.                                        |
+| `id`            | `string`                 | Imposta l'ID dell'elemento.                                                 |
+| `text`          | `string`                 | Imposta il testo dell'elemento.                                             |
+| `html`          | `string`                 | Imposta l'HTML interno dell'elemento.                                       |
 
 ---
+
 
 ## Esempi di utilizzo di `el()`
 
