@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esempi di uso di el()</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .example-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .savings {
+            font-weight: bold;
+            color: #28a745;
+        }
+       
+
+        /* Definizione dell'animazione */
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Inizia completamente trasparente */
+            }
+            to {
+                opacity: 1; /* Termina completamente visibile */
+            }
+        }
+
+        /* Applicazione dell'animazione */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out; /* Durata: 1 secondo, effetto ease-in-out */
+            animation-fill-mode: forwards; /* Mantiene lo stato finale dopo l'animazione */
+            animation-iteration-count: 1; /* Esegue l'animazione solo una volta */
+        }
+
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="mb-4">Esempi di uso di <code>el()</code></h1>
+
+        <!-- Esempio 1: Creare un nuovo elemento e aggiungerlo al DOM -->
+        <section class="mb-5">
+            <h2>1. Creare un nuovo elemento e aggiungerlo al DOM</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>
+const newElement = document.createElement('div');
+newElement.textContent = 'Ciao, sono un nuovo elemento!';
+document.getElementById('example1').appendChild(newElement);
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>
+el('&lt;div&gt;Ciao, sono un nuovo elemento!&lt;/div&gt;', {
+    to: '#example1'
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 43%</p>
+                </div>
+            </div>
+            <div id="example1" class="border p-3 mb-3"></div>
+        </section>
+
+        <!-- Esempio 2: Modificare un elemento esistente -->
+        <section class="mb-5">
+            <h2>2. Modificare un elemento esistente</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const targetElement = document.getElementById('targetElement');
+targetElement.textContent = 'Testo modificato!';
+targetElement.style.color = 'red';</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>el('#targetElement', {
+    text: 'Testo modificato!',
+    style: { color: 'red' }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 32%</p>
+                </div>
+            </div>
+            <div id="example2" class="border p-3 mb-3">
+                <p id="targetElement">Questo testo verrà modificato.</p>
+            </div>
+        </section>
+
+        <!-- Esempio 3: Aggiungere un evento a un elemento -->
+        <section class="mb-5">
+            <h2>3. Aggiungere un evento a un elemento</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const button = document.getElementById('exampleButton');
+button.addEventListener('click', () => {
+    alert('Hai cliccato il pulsante!');
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>el('#exampleButton', {
+    click: () => alert('Hai cliccato il pulsante!')
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 34%</p>
+                </div>
+            </div>
+            <div id="example3" class="border p-3 mb-3">
+                <button id="exampleButton" class="btn btn-primary">Cliccami</button>
+            </div>
+        </section>
+
+        <!-- Esempio 4: Sostituire un elemento esistente -->
+        <section class="mb-5">
+            <h2>4. Sostituire un elemento esistente</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const oldElement = document.getElementById('oldElement');
+const newElement = document.createElement('div');
+newElement.textContent = 'Nuovo elemento!';
+oldElement.parentNode.replaceChild(newElement, oldElement);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>el('&lt;div&gt;Nuovo elemento!&lt;/div&gt;', {
+    replaceChild: '#oldElement'
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 58%</p>
+                </div>
+            </div>
+            <div id="example4" class="border p-3 mb-3">
+                <p id="oldElement">Questo elemento verrà sostituito.</p>
+            </div>
+        </section>
+
+        <!-- Esempio 5: Aggiungere stili e classi -->
+        <section class="mb-5">
+            <h2>5. Aggiungere stili e classi</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const styledElement = document.getElementById('styledElement');
+styledElement.classList.add('text-success', 'fw-bold');
+styledElement.style.fontSize = '20px'; </code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>el('#styledElement', {
+    class: 'text-success fw-bold',
+    style: { fontSize: '20px' }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 39%</p>
+                </div>
+            </div>
+            <div id="example5" class="border p-3 mb-3">
+                <p id="styledElement">Questo elemento avrà stili e classi aggiunte.</p>
+            </div>
+        </section>
+
+        <!-- Esempio 6: Aggiungere un elemento con attributi personalizzati -->
+        <section class="mb-5">
+            <h2>6. Aggiungere un elemento con attributi personalizzati</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>
+const customElement = document.createElement('div');
+customElement.textContent = 'Elemento con attributi personalizzati';
+customElement.setAttribute('data-custom', 'value');
+document.getElementById('example6').appendChild(customElement);
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>
+el('&lt;div data-custom="value"&gt;Elemento con attributi personalizzati&lt;/div&gt;', {
+    to: '#example6'
+});
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 60%</p>
+                </div>
+            </div>
+            <div id="example6" class="border p-3 mb-3"></div>
+        </section>
+
+        <!-- Esempio 7: Rimuovere un elemento -->
+        <section class="mb-5">
+            <h2>7. Rimuovere un elemento</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const elementToRemove = document.getElementById('elementToRemove');
+elementToRemove.parentNode.removeChild(elementToRemove);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>el('#elementToRemove', {
+    remove: true
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 56%</p>
+                </div>
+            </div>
+            <div id="example7" class="border p-3 mb-3">
+                <p id="elementToRemove">Questo elemento verrà rimosso.</p>
+            </div>
+        </section>
+        <!-- Esempio 8: Aggiungere un elemento con animazione -->
+        <section class="mb-5">
+            <h2>8. Aggiungere un elemento con animazione</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>
+document.getElementById('#addButton').addEventListener('click', () => {
+    const newElement = document.createElement('div');
+    newElement.textContent = 'Elemento ' + counter;
+    newElement.classList.add('box', 'fade-in');
+    document.getElementById('container').appendChild(newElement);
+
+    counter++;
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>el()</code></h4>
+                        <div class="code-box">
+                            <pre><code>el('#addButton', {                   
+    el('&lt;div class="box fade-in"&gt;Elemento ' + counter + '&lt;/div&gt;', 
+    {
+        to: '#container'
+    });
+    counter++;
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="savings">Risparmio di caratteri: 37%</p>
+                </div>
+            </div>
+            <div id="example8" class="border p-3 mb-3">
+                <button id="addButton">Aggiungi elemento</button>
+                <div id="container"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap 5 JS (opzionale, per componenti come dropdown, modali, ecc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="el-min.js"></script>
+    <!-- Includi la funzione el() -->
+    <script>
+
+        // Esegui gli esempi
+        document.addEventListener('DOMContentLoaded', () => {
+            // Esempio 1
+            el('<div>Ciao, sono un nuovo elemento!</div>', {
+                to: '#example1'
+            });
+
+            // Esempio 2
+            el('#targetElement', {
+                text: 'Testo modificato!',
+                style: { color: 'red' }
+            });
+
+            // Esempio 3
+            el('#exampleButton', {
+                click: () => alert('Hai cliccato il pulsante!')
+            });
+
+            // Esempio 4
+            el('<div>Nuovo elemento!</div>', {
+                replaceChild: '#oldElement'
+            });
+
+            // Esempio 5
+            el('#styledElement', {
+                class: 'text-success fw-bold',
+                style: { fontSize: '20px' }
+            });
+
+            // Esempio 6
+            el('<div data-custom="value">Elemento con attributi personalizzati</div>', {
+                to: '#example6'
+            });
+
+            // Esempio 7
+            el('#elementToRemove', {
+                remove: true
+            });
+
+            // Esempio 8
+            let counter = 1;
+            // Aggiungi un evento al bottone
+            el('#addButton', {
+                click: () => {
+                    el('<div class="box fade-in">Elemento ' + counter + '</div>', {to: '#container'})
+                    counter++;
+                }
+            });
+
+
+
+        });
+    </script>
+</body>
+</html>
