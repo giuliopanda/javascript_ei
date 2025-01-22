@@ -343,12 +343,14 @@ document.getElementById('#addButton').addEventListener('click', () => {
                     <div class="example-box">
                         <h4>Con <code>el()</code></h4>
                         <div class="code-box">
-                            <pre><code>el('#addButton', {                   
-    el('&lt;div class="box fade-in"&gt;Elemento ' + counter + '&lt;/div&gt;', 
-    {
-        to: '#container'
-    });
-    counter++;
+                            <pre><code>el('#addButton', {
+    click: () => {
+        el('&lt;div class="box fade-in"&gt;Elemento ' + counter + '&lt;/div&gt;', 
+        {
+            to: '#container'
+        });
+        counter++;
+    }                   
 });</code></pre>
                         </div>
                     </div>
