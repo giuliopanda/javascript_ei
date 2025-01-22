@@ -2,6 +2,8 @@
 
 La funzione `el()` è una utility JavaScript che semplifica la manipolazione del DOM, permettendo di creare, modificare e gestire elementi HTML in modo più conciso rispetto all'uso diretto delle API del DOM. 
 
+[Guarda l'esempio](https://giuliopanda.github.io/el-test.html)
+
 ## Indice
 1. [Introduzione a `el()`](#introduzione-a-el)
 2. [Sintassi di `el()`](#sintassi-di-el)
