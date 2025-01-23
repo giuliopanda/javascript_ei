@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Javascrpt eI() e eIs()</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .example-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .savings {
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="mb-4">Utility Javascrpt <code>eI()</code> e <code>eIs()</code></h1>
+
+        <section class="mb-5">
+            <h2>Creazione di un nuovo elemento</h2>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>const newElement = document.createElement('div', 'my class');</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eI()</code></h4>
+                        Puoi usare la stessa scrittura di createElement
+                        <div class="code-box">
+                            <pre><code>const newElement = eI('div', 'my class');</code></pre>
+                        </div>  
+                        Oppure puoi Scrivere direttamente l'html
+                        <div class="code-box"> 
+                            <pre><code>const newElement = eI('&lt;div class="my class"&gt;Text&lt;/div&gt;');</code></pre>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Selezione di un elemento tramite ID</h2>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>const newElement = document.getElementById('myId');</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>const newElement = eI('#myId');</code></pre>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Selezione di un elemento tramite classi</h2>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>const newElement = document.querySelector('.jsClass');</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>const newElement = eI('.jsClass');</code></pre>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>AppendTo</h2>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>el = createElement('div');
+el.textContent = 'My Div';
+container.appendChild(el)</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>eI('div', {text: 'My Div', to: container});</code></pre>
+                        </div>   
+                        Oppure
+                        <div class="code-box">
+                            <pre><code>eI(container).eI('div', {text: 'My Div'});</code></pre>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Modificare un elemento esistente</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const targetElement = document.getElementById('targetElement');
+targetElement.textContent = 'Testo modificato!';
+targetElement.style.color = 'red';</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>eI('#targetElement', {
+    text: 'Testo modificato!',
+    style: { color: 'red' }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+        <section class="mb-5">
+            <h2>Aggiungere un evento</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const button = document.getElementById('exampleButton');
+button.addEventListener('click', () => {
+    alert('Hai cliccato il pulsante!');
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>eI('#exampleButton', {
+    click: () => alert('Hai cliccato il pulsante!')
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Sostituire un elemento esistente</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const oldElement = document.getElementById('oldElement');
+const newElement = document.createElement('div');
+newElement.textContent = 'Nuovo elemento!';
+oldElement.parentNode.replaceChild(newElement, oldElement);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>eI('&lt;div&gt;Nuovo elemento!&lt;/div&gt;', {
+    replaceChild: '#oldElement'
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Aggiungere stili e classi</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const styledElement = document.getElementById('styledElement');
+styledElement.classList.add('text-success', 'fw-bold');
+styledElement.style.fontSize = '20px';</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>eI('#styledElement', {
+    class: 'text-success fw-bold',
+    style: { fontSize: '20px' }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Aggiungere un elemento con più attributi</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const customElement = document.createElement('div');
+customElement.textContent = 'Elemento con attributi personalizzati';
+customElement.setAttribute('data-custom', 'value');
+document.getElementById('example6').appendChild(customElement);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>eI('&lt;div data-custom="value"&gt;Elemento con attributi personalizzati&lt;/div&gt;', {
+    to: '#example6'
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Rimuovere un elemento</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>const elementToRemove = document.getElementById('elementToRemove');
+elementToRemove.parentNode.removeChild(elementToRemove);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>eI('#elementToRemove', {
+    remove: true
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+         <!-- Tabella delle opzioni disponibili -->
+         <section class="mb-5">
+            <h2>Opzioni disponibili per <code>eI()</code></h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Opzione</th>
+                        <th>Tipo</th>
+                        <th>Descrizione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>to</code></td>
+                        <td><code>string</code> o <code>HTMLElement</code></td>
+                        <td>Aggiunge l'elemento come figlio di un altro elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>before</code></td>
+                        <td><code>string</code> o <code>HTMLElement</code></td>
+                        <td>Inserisce l'elemento prima di un altro elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>after</code></td>
+                        <td><code>string</code> o <code>HTMLElement</code></td>
+                        <td>Inserisce l'elemento dopo un altro elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>replace</code></td>
+                        <td><code>string</code> o <code>HTMLElement</code></td>
+                        <td>Sostituisce il contenuto di un elemento con l'elemento corrente.</td>
+                    </tr>
+                    <tr>
+                        <td><code>replaceChild</code></td>
+                        <td><code>string</code> o <code>HTMLElement</code></td>
+                        <td>Sostituisce completamente un elemento con l'elemento corrente.</td>
+                    </tr>
+                    <tr>
+                        <td><code>remove</code></td>
+                        <td><code>boolean</code></td>
+                        <td>Rimuove l'elemento dal DOM.</td>
+                    </tr>
+                    <tr>
+                        <td><code>click</code>, <code>mouseover</code>, ecc.</td>
+                        <td><code>function</code></td>
+                        <td>Aggiunge gestori di eventi come <code>click</code>, <code>mouseover</code>, ecc.</td>
+                    </tr>
+                    <tr>
+                        <td><code>style</code></td>
+                        <td><code>object</code></td>
+                        <td>Applica stili CSS all'elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>class</code></td>
+                        <td><code>string</code> o <code>array</code></td>
+                        <td>Aggiunge una o più classi all'elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>removeClass</code></td>
+                        <td><code>string</code></td>
+                        <td>Rimuove una classe specifica dall'elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>replaceClass</code></td>
+                        <td><code>array</code></td>
+                        <td>Sostituisce una classe con un'altra.</td>
+                    </tr>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>string</code></td>
+                        <td>Imposta l'ID dell'elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>text</code></td>
+                        <td><code>string</code></td>
+                        <td>Imposta il testo dell'elemento.</td>
+                    </tr>
+                    <tr>
+                        <td><code>html</code></td>
+                        <td><code>string</code></td>
+                        <td>Imposta l'HTML interno dell'elemento.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+      
+        <section class="mb-5">
+            <h2>Uso di eI come funzione del DOM</h2>
+            <p>Gli elementi del DOM che sono richiamati da eI acquistano due metodi eI e eIs. <br><code>eI(el1).eI(el2)</code>. L'el2 viene inserito dentro el1 tramite appendChild. La funzione ritorna l'el2.</p>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>// Creare un div con classi e aggiungerlo a un contenitore
+const newElement = document.createElement('div');
+newElement.classList.add('alert', 'alert-info');
+newElement.textContent = 'Elemento creato con createElement';
+document.getElementById('createElement').appendChild(newElement);</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>// Creare un div con classi e aggiungerlo a un contenitore
+el = eI('#createElement').eI('div', 'alert alert-info');
+el.textContent = 'Elemento creato con createElement';</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Esempio 3: Aggiungere proprietà agli elementi in qualsiasi momento -->
+        <section class="mb-5">
+            <h2>Aggiungere proprietà agli elementi in qualsiasi momento</h2>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>
+const dynamicElement = document.getElementById('dynamicElement');
+dynamicElement.textContent = 'Elemento creato con createElement';</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+eI('#dynamicElement', { text: 'Elemento creato con createElement' });</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Esempio 4: Utilizzo di eIs() con un selettore e una funzione -->
+        <section class="mb-5">
+            <h2>4. Utilizzo di <code>eIs()</code> con un selettore e una funzione</h2>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>// Applicare una funzione a tutti gli elementi &lt;li&gt; all'interno di un &lt;ul&gt;
+const listItems = document.querySelectorAll('ul li');
+listItems.forEach((el, i) => {
+    el.classList.add('list-item');
+    el.textContent = `Elemento ${i + 1}`;
+});</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eIs()</code></h4>
+                        <div class="code-box">
+                            <pre><code>// Applicare una funzione a tutti gli elementi &lt;li&gt; all'interno di un &lt;ul&gt;
+eIs('ul li', (el, i) => {
+    el.classList.add('list-item');
+    el.textContent = `Elemento ${i + 1}`;
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Esempio 5: Utilizzo di eIs() con un NodeList e una funzione -->
+        <section class="mb-5">
+            <h2>5. Utilizzo di <code>eIs()</code> con un NodeList e una funzione</h2>
+            <div class="example-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Vanilla JavaScript</h4>
+                        <div class="code-box">
+                            <pre><code>// Ottenere un NodeList di tutti gli elementi con la classe .myClass
+const nodeList = document.querySelectorAll('.myClass');
+
+// Applicare una funzione a tutti gli elementi nel NodeList
+nodeList.forEach((el, i) => {
+    el.classList.add('highlight');
+    el.textContent = `Elemento ${i + 1} evidenziato`;
+});</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Con <code>eIs()</code></h4>
+                        <div class="code-box">
+                            <pre><code>// Ottenere un NodeList di tutti gli elementi con la classe .myClass
+const nodeList = document.querySelectorAll('.myClass');
+
+// Applicare una funzione a tutti gli elementi nel NodeList
+eIs(nodeList, (el, i) => {
+    el.classList.add('highlight');
+    el.textContent = `Elemento ${i + 1} evidenziato`;
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Esempio 8: Aggiungere un elemento con animazione -->
+        <section class="mb-5">
+            <h2>8. Aggiungere un elemento con animazione</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Vanilla JS</h4>
+                        <div class="code-box">
+                            <pre><code>document.getElementById('addButton').addEventListener('click', () => {
+    const newElement = document.createElement('div');
+    newElement.textContent = 'Elemento ' + counter;
+    newElement.classList.add('box', 'fade-in');
+    document.getElementById('container').appendChild(newElement);
+    counter++;
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-box">
+                        <h4>Con <code>eI()</code></h4>
+                        <div class="code-box">
+                            <pre><code>let counter = 1;
+eI('#addButton', {
+    click: () => {
+        eI('&lt;div class="box fade-in"&gt;Elemento ' + counter + '&lt;/div&gt;', {
+            to: '#container'
+        });
+        counter++;
+    }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap 5 JS (opzionale, per componenti come dropdown, modali, ecc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="el.js"></script>
+</body>
+</html>

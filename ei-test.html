@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test eI.js e eIs.js</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .example-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .code-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .output-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #f8f9fa;
+        }
+        .error-box {
+            border: 1px solid #dc3545;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #f8d7da;
+            color: #dc3545;
+        }
+        .list-item {
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="mb-4">Test di tutti gli esempi di <code>eI.js</code> e <code>eIs.js</code></h1>
+
+        <!-- Esempio 1: Creazione di un nuovo elemento -->
+        <section class="mb-5">
+            <h2>1. Creazione di un nuovo elemento</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('&lt;div&gt;Ciao, sono un nuovo elemento!&lt;/div&gt;', { to: '#example1' });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Un nuovo div con il testo "Ciao, sono un nuovo elemento!" dovrebbe apparire nel box sottostante.
+                </div>
+                <div id="example1" class="border p-3 mb-3"></div>
+                <div class="error-box" id="error1"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 2: Selezione di un elemento tramite ID -->
+        <section class="mb-5">
+            <h2>2. Selezione di un elemento tramite ID</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('#example2', { text: 'Testo modificato!' });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Il testo dell'elemento con ID "example2" dovrebbe cambiare in "Testo modificato!".
+                </div>
+                <div id="example2" class="border p-3 mb-3">Testo originale</div>
+                <div class="error-box" id="error2"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 3: Selezione di un elemento tramite classi -->
+        <section class="mb-5">
+            <h2>3. Selezione di un elemento tramite classi</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('.example3', { text: 'Testo modificato!' });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Il testo dell'elemento con classe "example3" dovrebbe cambiare in "Testo modificato!".
+                </div>
+                <div class="example3 border p-3 mb-3">Testo originale</div>
+                <div class="error-box" id="error3"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 4: AppendTo -->
+        <section class="mb-5">
+            <h2>4. AppendTo</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('div', { text: 'Elemento aggiunto', to: '#example4' });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Un nuovo div con il testo "Elemento aggiunto" dovrebbe apparire nel box sottostante.
+                </div>
+                <div id="example4" class="border p-3 mb-3"></div>
+                <div class="error-box" id="error4"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 5: Modificare un elemento esistente -->
+        <section class="mb-5">
+            <h2>5. Modificare un elemento esistente</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('#example5', { text: 'Testo modificato!', style: { color: 'red' } });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Il testo dell'elemento con ID "example5" dovrebbe cambiare in "Testo modificato!" e il colore del testo dovrebbe diventare rosso.
+                </div>
+                <div id="example5" class="border p-3 mb-3">Testo originale</div>
+                <div class="error-box" id="error5"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 6: Aggiungere un evento -->
+        <section class="mb-5">
+            <h2>6. Aggiungere un evento</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('#example6Button', { click: () => alert('Hai cliccato il pulsante!') });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Cliccando il pulsante, dovrebbe apparire un alert con il messaggio "Hai cliccato il pulsante!".
+                </div>
+                <div class="border p-3 mb-3">
+                    <button id="example6Button" class="btn btn-primary">Cliccami</button>
+                </div>
+                <div class="error-box" id="error6"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 7: Sostituire un elemento esistente -->
+        <section class="mb-5">
+            <h2>7. Sostituire un elemento esistente</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('&lt;div&gt;Nuovo elemento!&lt;/div&gt;', { replaceChild: '#example7' });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> L'elemento con ID "example7" dovrebbe essere sostituito con un nuovo div contenente il testo "Nuovo elemento!".
+                </div>
+                <div class="border p-3 mb-3">
+                    <div id="example7">Elemento originale</div>
+                </div>
+                <div class="error-box" id="error7"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 8: Aggiungere stili e classi -->
+        <section class="mb-5">
+            <h2>8. Aggiungere stili e classi</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('#example8', { class: 'text-success fw-bold', style: { fontSize: '20px' } });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> L'elemento con ID "example8" dovrebbe avere il testo in grassetto, di colore verde e con dimensione del font di 20px.
+                </div>
+                <div id="example8" class="border p-3 mb-3">Testo originale</div>
+                <div class="error-box" id="error8"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 9: Aggiungere un elemento con più attributi -->
+        <section class="mb-5">
+            <h2>9. Aggiungere un elemento con più attributi</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('&lt;div data-custom="value"&gt;Elemento con attributi personalizzati&lt;/div&gt;', { to: '#example9' });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Un nuovo div con il testo "Elemento con attributi personalizzati" e l'attributo "data-custom" dovrebbe apparire nel box sottostante.
+                </div>
+                <div id="example9" class="border p-3 mb-3"></div>
+                <div class="error-box" id="error9"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 10: Rimuovere un elemento -->
+        <section class="mb-5">
+            <h2>10. Rimuovere un elemento</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eI('#example10', { remove: true });</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> L'elemento con ID "example10" dovrebbe essere rimosso dal DOM.
+                </div>
+                <div id="example10" class="border p-3 mb-3">Questo elemento verrà rimosso</div>
+                <div class="error-box" id="error10"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 11: Applicare una funzione a tutti gli elementi di una lista -->
+        <section class="mb-5">
+            <h2>11. Applicare una funzione a tutti gli elementi di una lista</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eIs('ul li', (el, i) => {
+    el.classList.add('list-item');
+    el.textContent = `Elemento ${i + 1}`;
+});</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Tutti gli elementi &lt;li&gt; all'interno di &lt;ul&gt; dovrebbero avere la classe "list-item" e il testo modificato in "Elemento 1", "Elemento 2", ecc.
+                </div>
+                <ul id="example11">
+                    <li>Elemento originale</li>
+                    <li>Elemento originale</li>
+                    <li>Elemento originale</li>
+                </ul>
+                <div class="error-box" id="error11"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 12: Applicare stili a tutti gli elementi con una classe specifica -->
+        <section class="mb-5">
+            <h2>12. Applicare stili a tutti gli elementi con una classe specifica</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eIs('.example12', (el) => {
+    el.style.color = 'blue';
+    el.style.fontWeight = 'bold';
+});</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Tutti gli elementi con la classe "example12" dovrebbero avere il testo blu e in grassetto.
+                </div>
+                <div class="example12 border p-3 mb-3">Testo originale</div>
+                <div class="example12 border p-3 mb-3">Testo originale</div>
+                <div class="error-box" id="error12"></div>
+            </div>
+        </section>
+
+        <!-- Esempio 13: Aggiungere un evento a tutti i pulsanti -->
+        <section class="mb-5">
+            <h2>13. Aggiungere un evento a tutti i pulsanti</h2>
+            <div class="example-box">
+                <div class="code-box">
+                    <pre><code>eIs('button', (el) => {
+    el.addEventListener('click', () => {
+        alert(`Hai cliccato il pulsante: ${el.textContent}`);
+    });
+});</code></pre>
+                </div>
+                <div class="output-box">
+                    <strong>Output atteso:</strong> Cliccando su qualsiasi pulsante, dovrebbe apparire un alert con il testo del pulsante cliccato.
+                </div>
+                <div class="border p-3 mb-3">
+                    <button class="btn btn-primary">Pulsante 1</button>
+                    <button class="btn btn-secondary">Pulsante 2</button>
+                </div>
+                <div class="error-box" id="error13"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Bootstrap 5 JS (opzionale, per componenti come dropdown, modali, ecc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Includi la funzione eI() e eIs() -->
+    <script src="el.js"></script>
+
+    <!-- Esegui i test -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const examples = [
+                { code: () => eI('<div>Ciao, sono un nuovo elemento!</div>', { to: '#example1' }), errorId: 'error1' },
+                { code: () => eI('#example2', { text: 'Testo modificato!' }), errorId: 'error2' },
+                { code: () => eI('.example3', { text: 'Testo modificato!' }), errorId: 'error3' },
+                { code: () => eI('div', { text: 'Elemento aggiunto', to: '#example4' }), errorId: 'error4' },
+                { code: () => eI('#example5', { text: 'Testo modificato!', style: { color: 'red' } }), errorId: 'error5' },
+                { code: () => eI('#example6Button', { click: () => alert('Hai cliccato il pulsante!') }), errorId: 'error6' },
+                { code: () => eI('<div>Nuovo elemento!</div>', { replaceChild: '#example7' }), errorId: 'error7' },
+                { code: () => eI('#example8', { class: 'text-success fw-bold', style: { fontSize: '20px' } }), errorId: 'error8' },
+                { code: () => eI('<div data-custom="value">Elemento con attributi personalizzati</div>', { to: '#example9' }), errorId: 'error9' },
+                { code: () => eI('#example10', { remove: true }), errorId: 'error10' },
+                { code: () => eIs('ul li', (el, i) => {
+                    el.classList.add('list-item');
+                    el.textContent = `Elemento ${i + 1}`;
+                }), errorId: 'error11' },
+                { code: () => eIs('.example12', (el) => {
+                    el.style.color = 'blue';
+                    el.style.fontWeight = 'bold';
+                }), errorId: 'error12' },
+                { code: () => eIs('button', (el) => {
+                    el.addEventListener('click', () => {
+                        alert(`Hai cliccato il pulsante: ${el.textContent}`);
+                    });
+                }), errorId: 'error13' },
+            ];
+
+            examples.forEach((example) => {
+                try {
+                    example.code();
+                    eI('#'+example.errorId, {remove:true});
+                } catch (error) {
+                    document.getElementById(example.errorId).textContent = `Errore: ${error.message}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

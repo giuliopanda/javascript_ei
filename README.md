@@ -1,13 +1,13 @@
-# `el()` 
+# `eI()`
 
-La funzione `el()` è una utility JavaScript che semplifica la manipolazione del DOM, permettendo di creare, modificare e gestire elementi HTML in modo più conciso rispetto all'uso diretto delle API del DOM. 
+La funzione `eI()` è una utility JavaScript che semplifica la manipolazione del DOM, permettendo di creare, modificare e gestire elementi HTML in modo più conciso rispetto all'uso diretto delle API del DOM. 
 
-[Guarda l'esempio](https://giuliopanda.github.io/el-test.html)
+[Guarda l'esempio](https://giuliopanda.github.io/ei-docs.html)
 
 ## Indice
-1. [Introduzione a `el()`](#introduzione-a-el)
-2. [Sintassi di `el()`](#sintassi-di-el)
-3. [Esempi di utilizzo di `el()`](#esempi-di-utilizzo-di-el)
+1. [Introduzione a `eI()`](#introduzione-a-el)
+2. [Sintassi di `eI()`](#sintassi-di-el)
+3. [Esempi di utilizzo di `eI()`](#esempi-di-utilizzo-di-el)
    - [Creare un nuovo elemento e aggiungerlo al DOM](#creare-un-nuovo-elemento-e-aggiungerlo-al-dom)
    - [Modificare un elemento esistente](#modificare-un-elemento-esistente)
    - [Aggiungere un evento a un elemento](#aggiungere-un-evento-a-un-elemento)
@@ -16,19 +16,19 @@ La funzione `el()` è una utility JavaScript che semplifica la manipolazione del
    - [Aggiungere un elemento con attributi personalizzati](#aggiungere-un-elemento-con-attributi-personalizzati)
    - [Rimuovere un elemento](#rimuovere-un-elemento)
    - [Aggiungere un elemento con animazione](#aggiungere-un-elemento-con-animazione)
-4. [Introduzione a `els()`](#introduzione-a-els)
-5. [Esempio di utilizzo di `els()`](#esempio-di-utilizzo-di-els)
+4. [Introduzione a `eIs()`](#introduzione-a-els)
+5. [Esempio di utilizzo di `eIs()`](#esempio-di-utilizzo-di-els)
 
 ---
 
-## Introduzione a `el()`
+## Introduzione a `eI()`
 
-La funzione `el()` è progettata per semplificare la manipolazione del DOM. Può essere utilizzata per creare nuovi elementi, modificare elementi esistenti, aggiungere eventi, gestire stili e classi, e molto altro. La funzione è particolarmente utile per ridurre la quantità di codice necessaria per eseguire operazioni comuni sul DOM.
+La funzione `eI()` è progettata per semplificare la manipolazione del DOM. Può essere utilizzata per creare nuovi elementi, modificare elementi esistenti, aggiungere eventi, gestire stili e classi, e molto altro. La funzione è particolarmente utile per ridurre la quantità di codice necessaria per eseguire operazioni comuni sul DOM.
 
-### Sintassi di `el()`
+### Sintassi di `eI()`
 
 ```javascript
-el(string, options)
+eI(string, options)
 ```
 
 - **string**: Può essere un selettore CSS (ad esempio `#myElement`) o una stringa HTML (ad esempio `<div>Ciao</div>`).
@@ -57,7 +57,7 @@ el(string, options)
 ---
 
 
-## Esempi di utilizzo di `el()`
+## Esempi di utilizzo di `eI()`
 
 ### 1. Creare un nuovo elemento e aggiungerlo al DOM
 
@@ -68,9 +68,9 @@ newElement.textContent = 'Ciao, sono un nuovo elemento!';
 document.getElementById('example1').appendChild(newElement);
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
-el('<div>Ciao, sono un nuovo elemento!</div>', {
+eI('<div>Ciao, sono un nuovo elemento!</div>', {
     to: '#example1'
 });
 ```
@@ -84,9 +84,9 @@ targetElement.textContent = 'Testo modificato!';
 targetElement.style.color = 'red';
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
-el('#targetElement', {
+eI('#targetElement', {
     text: 'Testo modificato!',
     style: { color: 'red' }
 });
@@ -102,9 +102,9 @@ button.addEventListener('click', () => {
 });
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
-el('#exampleButton', {
+eI('#exampleButton', {
     click: () => alert('Hai cliccato il pulsante!')
 });
 ```
@@ -119,9 +119,9 @@ newElement.textContent = 'Nuovo elemento!';
 oldElement.parentNode.replaceChild(newElement, oldElement);
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
-el('<div>Nuovo elemento!</div>', {
+eI('<div>Nuovo elemento!</div>', {
     replaceChild: '#oldElement'
 });
 ```
@@ -135,9 +135,9 @@ styledElement.classList.add('text-success', 'fw-bold');
 styledElement.style.fontSize = '20px';
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
-el('#styledElement', {
+eI('#styledElement', {
     class: 'text-success fw-bold',
     style: { fontSize: '20px' }
 });
@@ -153,9 +153,9 @@ customElement.setAttribute('data-custom', 'value');
 document.getElementById('example6').appendChild(customElement);
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
-el('<div data-custom="value">Elemento con attributi personalizzati</div>', {
+eI('<div data-custom="value">Elemento con attributi personalizzati</div>', {
     to: '#example6'
 });
 ```
@@ -168,9 +168,9 @@ const elementToRemove = document.getElementById('elementToRemove');
 elementToRemove.parentNode.removeChild(elementToRemove);
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
-el('#elementToRemove', {
+eI('#elementToRemove', {
     remove: true
 });
 ```
@@ -188,12 +188,12 @@ document.getElementById('addButton').addEventListener('click', () => {
 });
 ```
 
-**Con `el()`:**
+**Con `eI()`:**
 ```javascript
 let counter = 1;
-el('#addButton', {
+eI('#addButton', {
     click: () => {
-        el('<div class="box fade-in">Elemento ' + counter + '</div>', {
+        eI('<div class="box fade-in">Elemento ' + counter + '</div>', {
             to: '#container'
         });
         counter++;
@@ -203,14 +203,14 @@ el('#addButton', {
 
 ---
 
-## Introduzione a `els()`
+## Introduzione a `eIs()`
 
-La funzione `els()` è una variante di `el()` che permette di applicare operazioni a più elementi selezionati. È utile quando si desidera eseguire la stessa operazione su più elementi che corrispondono a un determinato selettore CSS.
+La funzione `eIs()` è una variante di `eI()` che permette di applicare operazioni a più elementi selezionati. È utile quando si desidera eseguire la stessa operazione su più elementi che corrispondono a un determinato selettore CSS.
 
-### Sintassi di `els()`
+### Sintassi di `eIs()`
 
 ```javascript
-els(selector, fn)
+eIs(selector, fn)
 ```
 
 - **selector**: Un selettore CSS che seleziona più elementi.
@@ -218,7 +218,7 @@ els(selector, fn)
 
 ---
 
-## Esempio di utilizzo di `els()`
+## Esempio di utilizzo di `eIs()`
 
 ### Applicare una classe a tutti gli elementi con una determinata classe
 
@@ -229,9 +229,9 @@ document.querySelectorAll('.myClass').forEach((el, i) => {
 });
 ```
 
-**Con `els()`:**
+**Con `eIs()`:**
 ```javascript
-els('.myClass', (el, i) => {
+eIs('.myClass', (el, i) => {
     el.classList.add('newClass');
 });
 ```
@@ -240,4 +240,4 @@ els('.myClass', (el, i) => {
 
 ## Conclusione
 
-Le funzioni `el()` e `els()` sono strumenti potenti per semplificare la manipolazione del DOM in JavaScript. Riducendo la quantità di codice necessario per eseguire operazioni comuni, queste funzioni possono migliorare la leggibilità e la manutenibilità del codice.
+Le funzioni `eI()` e `eIs()` sono strumenti potenti per semplificare la manipolazione del DOM in JavaScript. Riducendo la quantità di codice necessario per eseguire operazioni comuni, queste funzioni possono migliorare la leggibilità e la manutenibilità del codice.
