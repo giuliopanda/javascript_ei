@@ -2,6 +2,8 @@
 
 La funzione `eI()` è una utility JavaScript che semplifica la manipolazione del DOM, permettendo di creare, modificare e gestire elementi HTML in modo più conciso rispetto all'uso diretto delle API del DOM. 
 
+eI In pratica sostituisce document.getElementById, document.CreateElement, document.querySelector, appendChild. eIs invece sostituisce document.querySelectorAll. Poi ha qualche altra funzionalità.
+
 [Guarda l'esempio](https://giuliopanda.github.io/ei-docs.html)
 
 ## Indice
