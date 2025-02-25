@@ -46,7 +46,7 @@ eI(string, options)
 | `replaceChild`  | `string` o `HTMLElement` | Sostituisce completamente un elemento con l'elemento corrente.              |
 | `remove`        | `boolean`                | Rimuove l'elemento dal DOM.                                                 |
 | Eventi          | `function`               | Aggiunge gestori di eventi come `click`, `mouseover`, ecc.                  |
-| `style`         | `object`                 | Applica stili CSS all'elemento.                                             |
+| `style`         | `object` o `string`      | Applica stili CSS all'elemento, accetta sia oggetto che stringa CSS.        |
 | `class`         | `string` o `array`       | Aggiunge una o più classi all'elemento.                                     |
 | `removeClass`   | `string`                 | Rimuove una classe specifica dall'elemento.                                 |
 | `replaceClass`  | `array`                  | Sostituisce una classe con un'altra.                                        |
@@ -133,13 +133,27 @@ eI('<div>Nuovo elemento!</div>', {
 const styledElement = document.getElementById('styledElement');
 styledElement.classList.add('text-success', 'fw-bold');
 styledElement.style.fontSize = '20px';
+styledElement.style.color = 'blue';
+styledElement.style.backgroundColor = '#f0f0f0';
 ```
 
-**Con `eI()`:**
+**Con `eI()` usando oggetto style:**
 ```javascript
 eI('#styledElement', {
     class: 'text-success fw-bold',
-    style: { fontSize: '20px' }
+    style: { 
+        fontSize: '20px',
+        color: 'blue',
+        backgroundColor: '#f0f0f0'
+    }
+});
+```
+
+**Con `eI()` usando stringa CSS (novità v1.1.0):**
+```javascript
+eI('#styledElement', {
+    class: 'text-success fw-bold',
+    style: 'font-size: 20px; color: blue; background-color: #f0f0f0;'
 });
 ```
 
@@ -155,7 +169,8 @@ document.getElementById('example6').appendChild(customElement);
 
 **Con `eI()`:**
 ```javascript
-eI('<div data-custom="value">Elemento con attributi personalizzati</div>', {
+eI('<div>Elemento con attributi personalizzati</div>', {
+    'data-custom': 'value',
     to: '#example6'
 });
 ```
@@ -193,11 +208,57 @@ document.getElementById('addButton').addEventListener('click', () => {
 let counter = 1;
 eI('#addButton', {
     click: () => {
-        eI('<div class="box fade-in">Elemento ' + counter + '</div>', {
+        eI('<div>Elemento ' + counter + '</div>', {
+            class: 'box fade-in',
             to: '#container'
         });
         counter++;
     }
+});
+```
+
+### 9. Applicare stili con sintassi CSS testuale (novità v1.1.0)
+
+**Vanilla JS:**
+```javascript
+const element = document.getElementById('styleExample');
+element.style.border = '1px solid #ccc';
+element.style.padding = '10px';
+element.style.borderRadius = '5px';
+element.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+```
+
+**Con `eI()` usando stringa CSS:**
+```javascript
+eI('#styleExample', {
+    style: 'border: 1px solid #ccc; padding: 10px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'
+});
+```
+
+### 10. Gestione dei valori falsy (novità v1.1.0)
+
+**Vanilla JS:**
+```javascript
+const checkbox = document.getElementById('myCheckbox');
+checkbox.disabled = false;
+checkbox.checked = false;
+```
+
+**Con `eI()` v1.0.0 (non funzionerebbe correttamente con valori falsy):**
+```javascript
+// In v1.0.0, i valori falsy vengono ignorati
+eI('#myCheckbox', {
+    disabled: false, // questo valore veniva ignorato
+    checked: false   // questo valore veniva ignorato
+});
+```
+
+**Con `eI()` v1.1.0:**
+```javascript
+// In v1.1.0, i valori falsy vengono applicati correttamente
+eI('#myCheckbox', {
+    disabled: false, // questo valore viene applicato
+    checked: false   // questo valore viene applicato
 });
 ```
 
@@ -236,8 +297,45 @@ eIs('.myClass', (el, i) => {
 });
 ```
 
----
+### Applicare stili a più elementi usando la nuova sintassi stringa CSS (v1.1.0)
+
+**Vanilla JS:**
+```javascript
+document.querySelectorAll('.card').forEach((el, i) => {
+    el.style.margin = '10px';
+    el.style.boxShadow = i % 2 === 0 ? '0 2px 5px blue' : '0 2px 5px red';
+});
+```
+
+**Con `eIs()`:**
+```javascript
+eIs('.card', (el, i) => {
+    eI(el, {
+        style: `margin: 10px; box-shadow: 0 2px 5px ${i % 2 === 0 ? 'blue' : 'red'};`
+    });
+});
+```
+
 
 ## Conclusione
 
-Le funzioni `eI()` e `eIs()` sono strumenti potenti per semplificare la manipolazione del DOM in JavaScript. Riducendo la quantità di codice necessario per eseguire operazioni comuni, queste funzioni possono migliorare la leggibilità e la manutenibilità del codice.
+Le funzioni `eI()` e `eIs()` sono strumenti potenti per semplificare la manipolazione del DOM in JavaScript. Riducendo la quantità di codice necessario per eseguire operazioni comuni, queste funzioni possono migliorare la leggibilità e la manutenibilità del codice.  
+
+
+# Change Log
+
+V1.1.0
+
+- **Function _eIStyle()**:
+Aggiunta la funzionalità di accettare stili CSS come stringa (oltre che come oggetto)
+Implementata la conversione da formato kebab-case a camelCase per le proprietà CSS  
+
+- **Funzion _eIOptions()**:
+Cambiata la verifica delle proprietà da if (options[attr]) a if (attr in options) per gestire correttamente i valori falsy
+Questa modifica consente di impostare valori come false, 0 o stringhe vuote senza che vengano ignorati  
+
+- **Bug fix**:
+Rimosso codice duplicato nella funzione _eIStyle (il controllo sul valore null era presente due volte)  
+
+- Descrizioni dei parametri:
+Migliorata la descrizione dei parametri nelle funzioni, rendendo più chiaro il loro utilizzo  
