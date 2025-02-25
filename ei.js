@@ -1,5 +1,6 @@
 /**
  * Utility for creating DOM elements eI() and eIs()
+ * @author Giulio Pandolfelli
  * @version 1.1.0
  */
 
@@ -41,7 +42,7 @@ function eI(string, options = {}) {
  * Adds custom functions to elements
  */
 function _eIAddCustomFn(elm) {
-
+    if (!elm) return;
     elm.eI = function (selector, options = {}) {
         // if it is a CSS selector so it starts with a dot or a hash
         if (selector[0] === '.' || selector[0] === '#') {
@@ -120,6 +121,7 @@ function _eIcreateEl(htmlString) {
  * @param {*} styles Accepts both a CSS style string or a style object
  */
 function _eIStyle(element, styles) {
+    if (!element) return;
     // If styles is a string, convert it to an object
     if (typeof styles === 'string') {
         // Split the string into individual style declarations
@@ -173,6 +175,7 @@ function _eIStyle(element, styles) {
  *    class: "btn btn-primary"
  **/
 function _eIOptions(element, options = {}) {
+    if (!element) return;
     /**
      * Converts a string (CSS selector) to a DOM element.
      * If the option is already a DOM element, returns it directly.
