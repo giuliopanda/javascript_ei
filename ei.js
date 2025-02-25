@@ -259,7 +259,8 @@ function _eIOptions(element, options = {}) {
             element.classList.add(...options.class);
             // if it is a string composed of multiple classes with space between each class
         } else if(options.class.includes(' ')){
-            element.classList.add(...options.class.split(' '));
+            const classes = options.class.split(' ').filter(className => className.trim() !== '');
+            element.classList.add(...classes);
         } else {
             element.classList.add(options.class);
         }
